@@ -68,7 +68,7 @@ class SearchPage extends React.Component {
             onChange={this.onChangeInput}
           />
           <div className={styles.searchButton} onClick={this.onClickSearch}>
-            <img src="./magnifier-glass.png" alt="magnifier-glass" />
+            {/* <img src="./magnifier-glass.png" alt="magnifier-glass" /> */}
           </div>
         </div>
         <ErrorButton />

@@ -18,8 +18,3 @@ const request = async (link: string): Promise<void | ShortPersonRequest> => {
     console.error('The fetch was unsuccessful: ' + error);
   }
 };
-
-// export default class Swapi {
-//   private baseImageUrl: string =
-//     'https://starwars-visualguide.com/assets/img/characters/3.jpg';
-// }    
