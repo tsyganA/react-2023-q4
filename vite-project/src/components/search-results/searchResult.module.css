@@ -4,8 +4,9 @@
 }
 
 .person__info p {
-  color: #929292;
+  color: #46f50b60;
 }
+
 .people__container {
   display: flex;
   flex-wrap: wrap;
@@ -14,16 +15,14 @@
   justify-content: space-around;
 }
 
+.person__info img {
+  width: 230px;
+}
+
 .glow {
   font-size: 20px;
-  color: #ffffff;
+  color: #fbd718;
   text-shadow:
-    0 0 5px #ffdb9c,
-    0 0 10px #ffdb9c,
-    0 0 15px #8b6300,
-    0 0 20px #af7e01,
-    0 0 25px #af7e01,
-    0 0 30px #af7e01,
     0 0 35px #af7e01;
   height: 60px;
 }

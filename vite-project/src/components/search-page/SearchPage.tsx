@@ -59,7 +59,7 @@ class SearchPage extends React.Component {
   render() {
     return (
       <>
-        <div className={styles.searchBlock}>
+        <form className={styles.searchBlock}>
           <input
             placeholder="Search..."
             type="text"
@@ -67,10 +67,10 @@ class SearchPage extends React.Component {
             value={this.state.searchWord}
             onChange={this.onChangeInput}
           />
-          <div className={styles.searchButton} onClick={this.onClickSearch}>
-            {/* <img src="./magnifier-glass.png" alt="magnifier-glass" /> */}
-          </div>
-        </div>
+          <button className={styles.searchButton} onClick={this.onClickSearch}>
+            <img src="./magnifier-glass.png" alt="magnifier-glass" />
+          </button>
+        </form>
         <ErrorButton />
         {this.state.isLoading && <div className={styles.spinner}></div>}
         {!this.state.isLoading && !this.state.isErrorRequest && (
