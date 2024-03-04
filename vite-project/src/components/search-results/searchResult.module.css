@@ -22,8 +22,7 @@
 .glow {
   font-size: 20px;
   color: #fbd718;
-  text-shadow:
-    0 0 35px #af7e01;
+  text-shadow: 0 0 35px #af7e01;
   height: 60px;
 }
 .person__info:hover .glow {
