@@ -48,7 +48,7 @@ export interface ShortPersonRequest {
   //   name: string;
   //   url: string;
   // };
-  // image: string;
+  image: string;
   // episode: string[];
   // url: string;
   // created: string;

@@ -38,6 +38,8 @@ class SearchPage extends React.Component {
           species: ele.species,
           // type: ele.type,
           gender: ele.gender,
+          // origin: ele.origin,
+          image: ele.image,
         };
         // return {
         //   name: ele.name,

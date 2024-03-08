@@ -3,8 +3,8 @@ import styles from './searchResult.module.css';
 import { iRenderRequest } from '../../api/requests-types';
 
 export default class SearchResult extends Component<iRenderRequest> {
-  private baseImageUrl: string =
-    'https://rickandmortyapi.com/api/character/avatar/';
+  // private baseImageUrl: string =
+  //   'https://rickandmortyapi.com/api/character/avatar/';
 
   // private getId(url: string): string {
   //   const idRegExp: RegExp = /\/([0-9]*)\/$/;
@@ -20,14 +20,18 @@ export default class SearchResult extends Component<iRenderRequest> {
 
       return (
         <div key={i} className={styles.person__info}>
-          <img
+          {/* <img
             src={`${this.baseImageUrl}${el.id}.jpeg`}
+            alt="magnifier-glass"
+          /> */}
+          <img
+            src={el.image}
             alt="magnifier-glass"
           />
           <h2 className={styles.glow}>{el.name}</h2>
           <p>Status: {el.status}</p>
           <p>Species: {el.species}</p>
-          {/* <p>Type: {el.type}</p> */}
+          {/* <p>origin: {el.origin.name}</p> */}
           <p>Gender: {el.gender}</p>
         </div>
 

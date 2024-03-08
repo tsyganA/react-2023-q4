@@ -1,10 +1,7 @@
 import { ShortPersonRequest } from './requests-types';
 
-// const ROOT: string = 'https://swapi.dev/api';
 const ROOT: string = 'https://rickandmortyapi.com/api';
-// const PEOPLE: string = '/people';
 const PEOPLE: string = '/character';
-// const SEARCH: string = '/?search=';
 const SEARCH: string = '/?name=';
 
 export const findPeople: (
