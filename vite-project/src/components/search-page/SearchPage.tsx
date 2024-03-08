@@ -32,17 +32,26 @@ class SearchPage extends React.Component {
     if (requestArr instanceof Array && requestArr.length !== 0) {
       const shortRequestArr = requestArr.map((ele: PersonRequest) => {
         return {
+          id: ele.id,
           name: ele.name,
-          birth_year: ele.birth_year,
+          status: ele.status,
+          species: ele.species,
+          // type: ele.type,
           gender: ele.gender,
-          height: ele.height,
-          eye_color: ele.eye_color,
-          hair_color: ele.hair_color,
-          url: ele.url,
         };
+        // return {
+        //   name: ele.name,
+        //   birth_year: ele.birth_year,
+        //   gender: ele.gender,
+        //   height: ele.height,
+        //   eye_color: ele.eye_color,
+        //   hair_color: ele.hair_color,
+        //   url: ele.url,
+        // };
       });
       this.setState({ peopleRequest: shortRequestArr, isLoading: false });
       localStorage.setItem('inputValue', this.state.searchWord);
+      // console.log(shortRequestArr)
       return shortRequestArr;
     } else {
       localStorage.setItem('inputValue', this.state.searchWord);
