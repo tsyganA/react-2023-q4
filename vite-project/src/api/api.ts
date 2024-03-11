@@ -1,8 +1,8 @@
 import { ShortPersonRequest } from './requests-types';
 
-const ROOT: string = 'https://rickandmortyapi.com/api';
-const PEOPLE: string = '/character';
-const SEARCH: string = '/?name=';
+const ROOT: string = 'https://api.potterdb.com/v1';
+const PEOPLE: string = '/spells';
+const SEARCH: string = '/?filter[name_cont]=';
 
 export const findPeople: (
   searchWord: string
@@ -11,9 +11,13 @@ export const findPeople: (
 
 const request = async (link: string): Promise<void | ShortPersonRequest> => {
   try {
+    console.log(link)
     const result = await fetch(link);
+    // console.log(result)
     const resultJSON = await result.json();
-    return resultJSON.results;
+    // console.log(resultJSON)
+    // console.log(resultJSON.data)
+    return resultJSON.data;
   } catch (error) {
     console.error('The fetch was unsuccessful: ' + error);
   }

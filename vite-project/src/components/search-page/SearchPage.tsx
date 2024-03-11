@@ -27,20 +27,31 @@ class SearchPage extends React.Component {
 
   onClickSearch = async (): Promise<ShortPersonRequest[] | undefined> => {
     const searchWord = this.state.searchWord.trim();
+    // console.log(searchWord)
     this.setState({ isLoading: true, isErrorRequest: false });
     const requestArr = await findPeople(searchWord);
+    // console.log(requestArr)
     if (requestArr instanceof Array && requestArr.length !== 0) {
       const shortRequestArr = requestArr.map((ele: PersonRequest) => {
+
+
         return {
-          id: ele.id,
-          name: ele.name,
-          status: ele.status,
-          species: ele.species,
-          // type: ele.type,
-          gender: ele.gender,
-          // origin: ele.origin,
-          image: ele.image,
+          name: ele.attributes.name,
+          effect: ele.attributes.effect,
+          image: ele.attributes.image,
+          category: ele.attributes.category,
+          light: ele.attributes.light,
         };
+        // return {
+        //   id: ele.id,
+        //   name: ele.name,
+        //   status: ele.status,
+        //   species: ele.species,
+        //   // type: ele.type,
+        //   gender: ele.gender,
+        //   // origin: ele.origin,
+        //   image: ele.image,
+        // };
         // return {
         //   name: ele.name,
         //   birth_year: ele.birth_year,
