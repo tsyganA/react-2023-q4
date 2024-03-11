@@ -24,15 +24,16 @@ export default class SearchResult extends Component<iRenderRequest> {
             src={`${this.baseImageUrl}${el.id}.jpeg`}
             alt="magnifier-glass"
           /> */}
-          <img
+          {/* <img
             src={el.image}
             alt="magnifier-glass"
-          />
-          <h2 className={styles.glow}>{el.name}</h2>
-          <p>Status: {el.status}</p>
-          <p>Species: {el.species}</p>
+          /> */}
+          {/* <h2 className={styles.glow}>{el.name}</h2> */}
+          <p>Status: {el.attributes.name}</p>
+          {/* <p>Status: {el.status}</p>
+          <p>Species: {el.species}</p> */}
           {/* <p>origin: {el.origin.name}</p> */}
-          <p>Gender: {el.gender}</p>
+          {/* <p>Gender: {el.gender}</p> */}
         </div>
 
         //   <div key={i} className={styles.person__info}>

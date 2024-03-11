@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './SearchPage.module.css';
 import { findPeople } from '../../api/api';
 import SearchResult from '../search-results/searchResult';
-import { PersonRequest, ShortPersonRequest } from '../../api/requests-types';
+import { AttributesSpells, SpellsRequestData } from '../../api/requests-types';
 import ErrorButton from '../error-button/ErrorButton';
 
 class SearchPage extends React.Component {
@@ -25,21 +25,21 @@ class SearchPage extends React.Component {
     isErrorRequest: false,
   };
 
-  onClickSearch = async (): Promise<ShortPersonRequest[] | undefined> => {
+  onClickSearch = async (): Promise<AttributesSpells[] | undefined> => {
     const searchWord = this.state.searchWord.trim();
     this.setState({ isLoading: true, isErrorRequest: false });
     const requestArr = await findPeople(searchWord);
     if (requestArr instanceof Array && requestArr.length !== 0) {
-      const shortRequestArr = requestArr.map((ele: PersonRequest) => {
+      const shortRequestArr = requestArr.map((ele: SpellsRequestData) => {
         return {
-          id: ele.id,
+          // id: ele.id,
           name: ele.name,
-          status: ele.status,
-          species: ele.species,
+          // status: ele.status,
+          // species: ele.species,
           // type: ele.type,
-          gender: ele.gender,
+          // gender: ele.gender,
           // origin: ele.origin,
-          image: ele.image,
+          // image: ele.image,
         };
         // return {
         //   name: ele.name,
@@ -53,7 +53,7 @@ class SearchPage extends React.Component {
       });
       this.setState({ peopleRequest: shortRequestArr, isLoading: false });
       localStorage.setItem('inputValue', this.state.searchWord);
-      // console.log(shortRequestArr)
+      console.log(shortRequestArr)
       return shortRequestArr;
     } else {
       localStorage.setItem('inputValue', this.state.searchWord);
