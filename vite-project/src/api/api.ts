@@ -11,7 +11,7 @@ export const findPeople: (
 
 const request = async (link: string): Promise<void | ShortPersonRequest> => {
   try {
-    console.log(link)
+    // console.log(link)
     const result = await fetch(link);
     // console.log(result)
     const resultJSON = await result.json();
