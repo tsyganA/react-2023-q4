@@ -12,12 +12,6 @@
 
 
 
-export interface PersonRequest {
-  attributes: ShortPersonRequest;
-  id: string;
-  links: { self: string };
-  type: string;
-}
 
 // export interface ShortPersonRequest {
 //   name: string;
@@ -63,6 +57,13 @@ export interface PersonRequest {
 //   // url: string;
 //   // created: string;
 // }
+
+export interface PersonRequest {
+  attributes: ShortPersonRequest;
+  id: string;
+  links: { self: string };
+  type: string;
+}
 
 export interface ShortPersonRequest {
   category: string;
