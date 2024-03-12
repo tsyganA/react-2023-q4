@@ -10,9 +10,6 @@
 //   edited: string;
 // }
 
-
-
-
 // export interface ShortPersonRequest {
 //   name: string;
 //   birth_year: string;
@@ -22,7 +19,6 @@
 //   hair_color: string;
 //   url: string;
 // }
-
 
 // export interface PersonRequest extends ShortPersonRequest {
 //   status: 'Dead' | 'Alive' | 'unknown';
@@ -58,14 +54,14 @@
 //   // created: string;
 // }
 
-export interface PersonRequest {
-  attributes: ShortPersonRequest;
+export interface SpellsRequestData {
+  attributes: AttributesSpells;
   id: string;
   links: { self: string };
   type: string;
 }
 
-export interface ShortPersonRequest {
+export interface AttributesSpells {
   category: string;
   // creator: string;
   effect: string;
@@ -83,5 +79,45 @@ export interface iErrorBoundaryProps {
 }
 
 export interface iRenderRequest {
-  renderRequest: ShortPersonRequest[];
+  renderRequest: AttributesSpells[];
+}
+
+export interface OneSpellRequest {
+  data: SpellsRequestData;
+  links: { self: string };
+  meta: {
+    copyright: string;
+    generated_at: string;
+  };
+}
+
+export interface SpellsRequestData {
+  attributes: AttributesSpells;
+  id: string;
+  links: { self: string };
+  type: string;
+}
+
+export interface SpellsRequest {
+  data: SpellsRequestData[];
+  links: SpellsRequestLinks;
+  meta: SpellsRequestMeta;
+}
+
+export interface SpellsRequestLinks {
+  current: string;
+  last: string;
+  next: string;
+  self: string;
+}
+
+export interface SpellsRequestMeta {
+  copyright: string;
+  generated_at: string;
+  pagination: {
+    current: number;
+    last?: number;
+    next?: number;
+    records: number;
+  };
 }

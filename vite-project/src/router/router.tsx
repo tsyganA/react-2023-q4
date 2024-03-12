@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../components/app/App';
-// import CardDetail from '../components/card-detail/CardDetail';
+import CardDetail from '../components/card-detail/CardDetail';
 
 const router = createBrowserRouter(
   [
@@ -10,7 +10,7 @@ const router = createBrowserRouter(
       children: [
         {
           path: 'details/:cardId',
-        //   element: <CardDetail />,
+          element: <CardDetail />,
         },
       ],
     },
