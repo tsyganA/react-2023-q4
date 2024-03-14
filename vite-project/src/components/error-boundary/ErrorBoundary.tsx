@@ -26,7 +26,8 @@ class ErrorBoundary extends Component<iErrorBoundaryProps> {
             Just click here
           </button>
           <img
-            src="http://127.0.0.1:5175/RSSchool-react-course/harry-potter.png"
+            // src="http://127.0.0.1:5175/RSSchool-react-course/harry-potter.png"
+            src="./RSSchool-react-course/src/master-yoda.png"
             alt="harry-potter"
             className={`${styles.error__img} ${
               this.state.imageAppeared && styles.appear
