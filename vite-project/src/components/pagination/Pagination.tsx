@@ -31,11 +31,12 @@ const Pagination = (props: {
   );
 
   return (
-    <div className={styles.paginationBlock}>
+    <div className={styles.paginationBlock} data-testid="pagination">
       <button
         className={classNamePrevPage}
         onClick={onPrevBtnClick}
         disabled={disabledPrev}
+        data-testid={'prevBtn'}
       >
         prev
       </button>
@@ -44,6 +45,7 @@ const Pagination = (props: {
         className={classNameNextPage}
         onClick={onNextBtnClick}
         disabled={disabledNext}
+        data-testid={'nextBtn'}
       >
         next
       </button>

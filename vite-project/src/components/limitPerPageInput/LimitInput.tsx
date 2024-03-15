@@ -21,15 +21,19 @@ const LimitInput = (props: {
     props.setPage('1');
   };
   return (
-    <div className={styles.container}>
-      <input
-        type="number"
-        value={itemPerPage}
-        onChange={setItemCount}
-        className={styles.limitInput}
-      />
-      <button onClick={onAcceptClick}>Accept</button>
-    </div>
+    <>
+      <div className={styles.container}>
+        <input
+          type="number"
+          value={itemPerPage}
+          onChange={setItemCount}
+          className={styles.limitInput}
+          min="1"
+          data-testid="limitInput"
+        />
+        <button onClick={onAcceptClick}>Accept</button>
+      </div>
+    </>
   );
 };
 export default LimitInput;

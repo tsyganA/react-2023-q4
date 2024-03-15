@@ -12,6 +12,7 @@ const CardDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchSpell = async () => {
+      setIsLoading(true);
       try {
         if (cardId) {
           setIsLoading(true);
@@ -29,11 +30,16 @@ const CardDetail = () => {
   }, [cardId]);
 
   return (
-    <div className={styles.detailsContainer}>
+    <div className={styles.detailsContainer} data-testid="detailsBlock">
       <Link to="/">
-        <div className={styles.closeModal}></div>
+        <div className={styles.closeModal} data-testid="closeDetails"></div>
       </Link>
-      {isLoading && <div className={styles.spinner}></div>}
+      {isLoading && (
+        <div
+          className={styles.spinner}
+          data-testid="DetailedLoadingBlock"
+        ></div>
+      )}
       {!isLoading && currentSpell ? (
         <>
           <h2>{currentSpell.data.attributes.name}</h2>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styles from './SearchPage.module.css';
 import { findSpells } from '../../api/api';
 import SearchResult from '../search-results/searchResult';
@@ -17,17 +17,16 @@ import {
 import LimitInput from '../limitPerPageInput/LimitInput';
 import Pagination from '../pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
+import { SearchWordsContext, SpellsRequestContext } from './Contexts';
 
 function SearchPage() {
-  const peopleArr: SpellsRequestData[] = [];
-  // console.log(peopleArr)
+  const { spellsRequest, setSpellsRequest } = useContext(SpellsRequestContext);
+  // console.log(spellsRequest)
   const [searchWord, setSearchWord] = useState(chooseSearchWord());
   // console.log(searchWord)
-  const [peopleRequest, setPeopleRequest] = useState(peopleArr);
-  // console.log(peopleRequest)
   const [isLoading, setIsLoading] = useState(false);
   // console.log(isLoading)
-  const [isErrorRequest, setIsErrorRequest] = useState(false);
+  const [, setIsErrorRequest] = useState(false);
   // console.log(isErrorRequest)
   const [request, setRequest] = useState(chooseSearchWord());
   // console.log(request)
@@ -48,7 +47,7 @@ function SearchPage() {
       setIsNextPageActive(false);
       setIsLoading(true);
       setIsErrorRequest(false);
-      setPeopleRequest([]);
+      setSpellsRequest([]);
       const requestObj: SpellsRequest | OneSpellRequest | void =
         await findSpells(request, limitPerPage, page);
       // console.log(requestObj)
@@ -60,7 +59,7 @@ function SearchPage() {
         const isNextPage = !!requestObj.meta.pagination.next;
         setIsNextPageActive(isNextPage);
         const requestArr = requestObj.data;
-        setPeopleRequest(requestArr);
+        setSpellsRequest(requestArr);
         setIsLoading(false);
         localStorage.setItem('inputValue', request);
         // console.log(requestArr);
@@ -72,47 +71,154 @@ function SearchPage() {
       }
     };
     onClickSearch();
-    // console.log(onClickSearch())
-  }, [request, limitPerPage, page, setSearchParams]);
-
-  const onSetRequest = () => {
-    setRequest(searchWord);
-  };
+    console.log(onClickSearch());
+  }, [request, limitPerPage, page, setSpellsRequest, setSearchParams]);
 
   return (
-    <div className={styles.searchPage}>
-      <SearchBlock
-        searchWord={searchWord}
-        setSearchWord={setSearchWord}
-        onClickSearch={onSetRequest}
-      />
-      <div className={styles.searchDetails}>
-        <ErrorButton />
-        <LimitInput
-          limit={limitPerPage}
-          setLimit={setLimitPerPage}
-          setPage={setPage}
-        />
+    <SearchWordsContext.Provider
+      value={{ searchWord, setSearchWord, setRequest, request }}
+    >
+      <div className={styles.searchPage}>
+        <SearchBlock />
+        <div className={styles.searchDetails}>
+          <ErrorButton />
+          <LimitInput
+            limit={limitPerPage}
+            setLimit={setLimitPerPage}
+            setPage={setPage}
+          />
+        </div>
+        {isLoading && <div className={styles.spinner}></div>}
+        {!isLoading && <SearchResult />}
+        {spellsRequest.length !== 0 && (
+          <Pagination
+            page={page}
+            setPage={setPage}
+            isNextPageActive={isNextPageActive}
+          />
+        )}
       </div>
-      {isLoading && <div className={styles.spinner}></div>}
-      {!isLoading && !isErrorRequest && peopleRequest.length !== 0 && (
-        <SearchResult peopleRequest={peopleRequest} />
-      )}
-      {isErrorRequest && (
-        <h2>We couldn&apos;t find anything matching your request.</h2>
-      )}
-      {peopleRequest.length !== 0 && (
-        <Pagination
-          page={page}
-          setPage={setPage}
-          isNextPageActive={isNextPageActive}
-        />
-      )}
-    </div>
+    </SearchWordsContext.Provider>
   );
 }
 
 export default SearchPage;
+
+// import { useEffect, useState } from 'react';
+// import styles from './SearchPage.module.css';
+// import { findSpells } from '../../api/api';
+// import SearchResult from '../search-results/searchResult';
+// import {
+//   OneSpellRequest,
+//   SpellsRequest,
+//   SpellsRequestData,
+// } from '../../api/requests-types';
+// import ErrorButton from '../error-button/ErrorButton';
+// import SearchBlock from '../search-block/SearchBlock';
+// import {
+//   chooseLimit,
+//   choosePage,
+//   chooseSearchWord,
+// } from '../../utils/chooseSearchWord';
+// import LimitInput from '../limitPerPageInput/LimitInput';
+// import Pagination from '../pagination/Pagination';
+// import { useSearchParams } from 'react-router-dom';
+
+// function SearchPage() {
+//   const peopleArr: SpellsRequestData[] = [];
+//   // console.log(peopleArr)
+//   const [searchWord, setSearchWord] = useState(chooseSearchWord());
+//   // console.log(searchWord)
+//   const [peopleRequest, setPeopleRequest] = useState(peopleArr);
+//   // console.log(peopleRequest)
+//   const [isLoading, setIsLoading] = useState(false);
+//   // console.log(isLoading)
+//   const [isErrorRequest, setIsErrorRequest] = useState(false);
+//   // console.log(isErrorRequest)
+//   const [request, setRequest] = useState(chooseSearchWord());
+//   // console.log(request)
+//   const [limitPerPage, setLimitPerPage] = useState(chooseLimit());
+//   // console.log(limitPerPage)
+//   const [page, setPage] = useState(choosePage());
+//   // console.log(page)
+//   const [isNextPageActive, setIsNextPageActive] = useState(false);
+//   // console.log(isNextPageActive)
+//   const [, setSearchParams] = useSearchParams();
+
+//   useEffect(() => {
+//     setSearchParams({ page: page, limit: limitPerPage });
+//     // console.log(setSearchParams)
+//     const onClickSearch = async (): Promise<
+//       SpellsRequestData[] | undefined
+//     > => {
+//       setIsNextPageActive(false);
+//       setIsLoading(true);
+//       setIsErrorRequest(false);
+//       setPeopleRequest([]);
+//       const requestObj: SpellsRequest | OneSpellRequest | void =
+//         await findSpells(request, limitPerPage, page);
+//       // console.log(requestObj)
+//       if (
+//         requestObj &&
+//         requestObj.data instanceof Array &&
+//         requestObj.data.length !== 0
+//       ) {
+//         const isNextPage = !!requestObj.meta.pagination.next;
+//         setIsNextPageActive(isNextPage);
+//         const requestArr = requestObj.data;
+//         setPeopleRequest(requestArr);
+//         setIsLoading(false);
+//         localStorage.setItem('inputValue', request);
+//         // console.log(requestArr);
+//         return requestArr;
+//       } else {
+//         localStorage.setItem('inputValue', request);
+//         setIsLoading(false);
+//         setIsErrorRequest(true);
+//       }
+//     };
+//     onClickSearch();
+//     // console.log(onClickSearch())
+//   }, [request, limitPerPage, page, setSearchParams]);
+
+//   const onSetRequest = () => {
+//     setRequest(searchWord);
+//   };
+
+//   return (
+//     <div className={styles.searchPage}>
+//       <SearchBlock
+//         searchWord={searchWord}
+//         setSearchWord={setSearchWord}
+//         onClickSearch={onSetRequest}
+//       />
+//       <div className={styles.searchDetails}>
+//         <ErrorButton />
+//         <LimitInput
+//           limit={limitPerPage}
+//           setLimit={setLimitPerPage}
+//           setPage={setPage}
+//         />
+//       </div>
+//       {isLoading && <div className={styles.spinner}></div>}
+//       {!isLoading && !isErrorRequest && peopleRequest.length !== 0 && (
+//         <SearchResult peopleRequest={peopleRequest} />
+//       )}
+//       {isErrorRequest && (
+//         <h2>We couldn&apos;t find anything matching your request.</h2>
+//       )}
+//       {peopleRequest.length !== 0 && (
+//         <Pagination
+//           page={page}
+//           setPage={setPage}
+//           isNextPageActive={isNextPageActive}
+//         />
+//       )}
+//     </div>
+//   );
+// }
+
+// export default SearchPage;
 
 // import React from 'react';
 // import styles from './SearchPage.module.css';

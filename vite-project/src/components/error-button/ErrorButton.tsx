@@ -15,7 +15,11 @@ function ErrorButton() {
   return (
     <>
       {!hasError && (
-        <button onClick={resetError} className={styles.errorButton}>
+        <button
+          onClick={resetError}
+          className={styles.errorButton}
+          data-testid="errorBtn"
+        >
           Create Error
         </button>
       )}

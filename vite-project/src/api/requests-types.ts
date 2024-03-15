@@ -10,6 +10,8 @@
 //   edited: string;
 // }
 
+// import { Dispatch } from "react";
+
 // export interface ShortPersonRequest {
 //   name: string;
 //   birth_year: string;
@@ -54,32 +56,16 @@
 //   // created: string;
 // }
 
-export interface SpellsRequestData {
-  attributes: AttributesSpells;
-  id: string;
-  links: { self: string };
-  type: string;
-}
+// export interface iRenderRequest {
+//   renderRequest: AttributesSpells[];
+// }
 
-export interface AttributesSpells {
-  category: string;
-  // creator: string;
-  effect: string;
-  // hand: string;
-  image: string;
-  // incantation: string;
-  light: string;
-  name: string;
-  // slug: string;
-  // wiki: string;
-}
+import React, { Dispatch, SetStateAction } from 'react';
 
-export interface iErrorBoundaryProps {
-  children: React.ReactNode;
-}
-
-export interface iRenderRequest {
-  renderRequest: AttributesSpells[];
+export interface SpellsRequest {
+  data: SpellsRequestData[];
+  links: SpellsRequestLinks;
+  meta: SpellsRequestMeta;
 }
 
 export interface OneSpellRequest {
@@ -98,12 +84,6 @@ export interface SpellsRequestData {
   type: string;
 }
 
-export interface SpellsRequest {
-  data: SpellsRequestData[];
-  links: SpellsRequestLinks;
-  meta: SpellsRequestMeta;
-}
-
 export interface SpellsRequestLinks {
   current: string;
   last: string;
@@ -120,4 +100,33 @@ export interface SpellsRequestMeta {
     next?: number;
     records: number;
   };
+}
+
+export interface AttributesSpells {
+  category: string;
+  creator: string;
+  effect: string;
+  hand: string;
+  image: string;
+  incantation: string;
+  light: string;
+  name: string;
+  slug: string;
+  wiki: string;
+}
+
+export interface iErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+export interface SearchWordsContextType {
+  searchWord: string;
+  setSearchWord: Dispatch<SetStateAction<string>>;
+  request: string;
+  setRequest: Dispatch<SetStateAction<string>>;
+}
+
+export interface SpellsRequestType {
+  spellsRequest: SpellsRequestData[];
+  setSpellsRequest: Dispatch<SetStateAction<SpellsRequestData[]>>;
 }
