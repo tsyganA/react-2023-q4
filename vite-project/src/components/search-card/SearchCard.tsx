@@ -25,7 +25,7 @@ const SearchCard = (props: {
       >
         <div className={styles.person__info}>
           <h2 className={styles.glow}>{props.name}</h2>
-          {/* <div className={styles.imageBlock}>
+          <div className={styles.imageBlock}>
             {props.image ? (
               <img
                 className={styles.cardImg}
@@ -39,7 +39,7 @@ const SearchCard = (props: {
                 alt="spells-image"
               />
             )}
-          </div> */}
+          </div>
           <div className={styles.cardInfo}>
             <p>Effect: {props.effect}</p>
           </div>

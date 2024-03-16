@@ -71,7 +71,7 @@ function SearchPage() {
       }
     };
     onClickSearch();
-    console.log(onClickSearch());
+    // console.log(onClickSearch());
   }, [request, limitPerPage, page, setSpellsRequest, setSearchParams]);
 
   return (

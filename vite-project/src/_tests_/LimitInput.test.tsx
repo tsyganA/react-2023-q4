@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import LimitInput from '../components/limitPerPageInput/LimitInput';
 // import { vi } from 'vitest';
+// const { expect} = require('@jest/globals')
 
 test('Make sure that limit input is working correct', () => {
   const setLimitMock = vi.fn();

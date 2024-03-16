@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { routes } from '../router/router';
 import { act, render } from '@testing-library/react';

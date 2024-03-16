@@ -55,7 +55,7 @@ describe('Tests for the Pagination', () => {
         </SpellsRequestContext.Provider>
       )
     );
-// console.log(router.state.location.search)
+    // console.log(router.state.location.search)
 
     expect(router.state.location.search).toBe('?page=4&limit=8');
     const pagination = screen.getByTestId('pagination');
