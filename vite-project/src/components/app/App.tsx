@@ -1,22 +1,22 @@
 import styles from './App.module.css';
-import { useState } from 'react';
+// import { useState } from 'react';
 import SearchPage from '../search-page/SearchPage';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import ErrorBoundary from '../error-boundary/ErrorBoundary';
-import { SpellsRequestContext } from '../search-page/Contexts';
-import { SpellsRequestData } from '../../api/requests-types';
+// import { SpellsRequestContext } from '../search-page/Contexts';
+// import { SpellsRequestData } from '../../api/requests-types';
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const spellsArr: SpellsRequestData[] = [];
-  const [spellsRequest, setSpellsRequest] = useState(spellsArr);
+  // const spellsArr: SpellsRequestData[] = [];
+  // const [spellsRequest, setSpellsRequest] = useState(spellsArr);
 
   return (
     <ErrorBoundary>
-      <SpellsRequestContext.Provider
+      {/* <SpellsRequestContext.Provider
         value={{ spellsRequest, setSpellsRequest }}
-      >
+      > */}
         <div className={styles.container}>
           <div
             className={styles.content}
@@ -32,10 +32,13 @@ function App() {
             <Outlet />
           </div>
         </div>
-      </SpellsRequestContext.Provider>
+      {/* </SpellsRequestContext.Provider> */}
     </ErrorBoundary>
   );
 }
+
+
+export default App;
 
 // class App extends Component {
 //   render() {
@@ -48,8 +51,6 @@ function App() {
 //     );
 //   }
 // }
-
-export default App;
 
 // import styles from './App.module.css';
 // import SearchPage from '../search-page/SearchPage';

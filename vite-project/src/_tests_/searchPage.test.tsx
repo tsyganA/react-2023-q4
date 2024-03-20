@@ -2,7 +2,7 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { routes } from '../router/router';
 import { act, render } from '@testing-library/react';
-import { findSpells } from '../api/api';
+import { findSpells } from '../api/reduxApi';
 // import { vi } from 'vitest';
 
 describe('Search page tests', () => {

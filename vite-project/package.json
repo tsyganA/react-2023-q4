@@ -19,19 +19,25 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
+    "@types/react-redux": "^7.1.30",
+    "eslint-plugin-react-hooks": "^5.0.0-canary-a870b2d54-20240314",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
     "react-router-dom": "^6.18.0",
-    "eslint-plugin-react-hooks": "^5.0.0-canary-a870b2d54-20240314"
+    "redux": "^4.2.1"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.23.3",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/jest-native": "^4.0.5",
-    "@types/testing-library__jest-dom": "^5.14.5",
     "@testing-library/react": "^14.1.0",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/redux-mock-store": "^1.0.6",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
@@ -54,10 +60,10 @@
     "jsdom": "^22.1.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
+    "redux-mock-store": "^1.5.4",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "@babel/preset-typescript": "^7.23.3",
-    "ts-jest": "^29.1.2",
     "vitest": "^1.4.0"
   },
   "husky": {

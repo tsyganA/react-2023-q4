@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import styles from './SearchPage.module.css';
-import { findSpells } from '../../api/api';
+import { findSpells } from '../../api/reduxApi';
 import SearchResult from '../search-results/searchResult';
 import {
   OneSpellRequest,

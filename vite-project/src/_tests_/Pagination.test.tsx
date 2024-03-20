@@ -8,7 +8,7 @@ import { routes } from '../router/router';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 import { SpellsRequestContext } from '../components/search-page/Contexts';
-import { findSpells } from '../api/api';
+import { findSpells } from '../api/reduxApi';
 // import { vi } from 'vitest';
 
 describe('Tests for the Pagination', () => {

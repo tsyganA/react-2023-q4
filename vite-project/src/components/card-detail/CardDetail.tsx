@@ -1,33 +1,46 @@
 import styles from './CardDetail.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { OneSpellRequest } from '../../api/requests-types';
-import { getSpell } from '../../api/api';
+// import { OneSpellRequest } from '../../api/requests-types';
+// import { getSpell } from '../../api/reduxApi';
+import { useGetOneSpellQuery } from '../../api/reduxApi';
+import { useAppDispatch } from '../../hooks/redux';
+import { setIsDetailsLoading } from '../../store/reducers/isLoading';
 
 const CardDetail = () => {
   const { cardId } = useParams();
-  const [currentSpell, setCurrentSpell] = useState<OneSpellRequest | undefined>(
-    undefined
-  );
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    const fetchSpell = async () => {
-      setIsLoading(true);
-      try {
-        if (cardId) {
-          setIsLoading(true);
-          const spell = await getSpell(cardId);
-          setIsLoading(false);
-          setCurrentSpell(spell);
-        }
-      } catch (error) {
-        setIsLoading(false);
-        console.error(error);
-      }
-    };
+  // const [currentSpell, setCurrentSpell] = useState<OneSpellRequest | undefined>(
+  //   undefined
+  // );
+  let id = '';
+  if (cardId) {
+    id = cardId;
+  }
+  const dispatch = useAppDispatch();
+  const { data, isLoading } = useGetOneSpellQuery({
+    id,
+  });
 
-    fetchSpell();
-  }, [cardId]);
+  useEffect(() => {
+    dispatch(setIsDetailsLoading(isLoading));
+  }, [isLoading]);
+  //   const fetchSpell = async () => {
+  //     setIsLoading(true);
+  //     try {
+  //       if (cardId) {
+  //         setIsLoading(true);
+  //         const spell = await getSpell(cardId);
+  //         setIsLoading(false);
+  //         setCurrentSpell(spell);
+  //       }
+  //     } catch (error) {
+  //       setIsLoading(false);
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   fetchSpell();
+  // }, [cardId]);
 
   return (
     <div className={styles.detailsContainer} data-testid="detailsBlock">
@@ -36,17 +49,17 @@ const CardDetail = () => {
       </Link>
       {isLoading && (
         <div
+        data-testid="DetailedLoadingBlock"
           className={styles.spinner}
-          data-testid="DetailedLoadingBlock"
         ></div>
       )}
-      {!isLoading && currentSpell ? (
+      {!isLoading && (
         <>
-          <h2>{currentSpell.data.attributes.name}</h2>
-          {currentSpell.data.attributes.image ? (
+          <h2>{data?.response.name}</h2>
+          {data?.response.image ? (
             <img
               className={styles.detailsImg}
-              src={currentSpell.data.attributes.image}
+              src={data?.response.image}
               alt="spells-image"
             />
           ) : (
@@ -56,24 +69,23 @@ const CardDetail = () => {
               className={styles.detailsImg}
             />
           )}
+          <p className={styles.paragraph}>Effect: {data?.response.effect}</p>
           <p className={styles.paragraph}>
-            Effect: {currentSpell.data.attributes.effect}
+            {/* Effect: {currentSpell.data.attributes.effect}
           </p>
-          <p className={styles.paragraph}>
-            category: {currentSpell.data.attributes.category}
+          <p className={styles.paragraph}> */}
+            category: {data?.response.category}
           </p>
-          {currentSpell.data.attributes.light ? (
-            <p className={styles.paragraph}>
-              light: {currentSpell.data.attributes.light}
-            </p>
+          {data?.response.light ? (
+            <p className={styles.paragraph}>light: {data?.response.light}</p>
           ) : (
             <p className={styles.paragraph}>
               light: emerald, white or sky blue
             </p>
           )}
         </>
-      ) : (
-        <></>
+      // ) : (
+      //   <></>
       )}
     </div>
   );

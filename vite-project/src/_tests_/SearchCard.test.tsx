@@ -18,7 +18,7 @@ import { spellsRequest } from './fakeData/spellsRequest';
 import { SpellsRequestContext } from '../components/search-page/Contexts';
 import { propsToCard } from './fakeData/propsToCard';
 import { fakeData } from './fakeData/fakeData';
-import { getSpell } from '../api/api';
+import { getSpell } from '../api/reduxApi';
 // import { vi } from 'vitest';
 import CardDetail from '../components/card-detail/CardDetail';
 
