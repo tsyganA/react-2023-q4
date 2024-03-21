@@ -66,9 +66,7 @@ const Pagination = () => {
   const classNamePrevPage = classNames(disabledPrev ? styles.disabled : '');
   // const disabledNext = !props.isNextPageActive;
 
-  const classNamePrevPage = classNames(
-    !isNextPageActive ? styles.disabled : ''
-  );
+ 
   const classNameNextPage = classNames(
     !isNextPageActive ? styles.disabled : ''
   );

@@ -1,24 +1,33 @@
 import { render, screen } from '@testing-library/react';
+import configureMockStore from 'redux-mock-store';
 import SearchResult from '../components/search-results/searchResult';
-import { SpellsRequestContext } from '../components/search-page/Contexts';
-import { SpellsRequestData, SpellsRequestType } from '../api/requests-types';
+// import { SpellsRequestContext } from '../components/search-page/Contexts';
+// import { SpellsRequestData, SpellsRequestType } from '../api/requests-types';
 import { MemoryRouter } from 'react-router-dom';
-import { spellsRequest } from './fakeData/spellsRequest';
+import { store } from '../store/store';
+import { Provider } from 'react-redux';
+import { initialState } from './fakeData/initialSliceState';
+// import { spellsRequest } from './fakeData/spellsRequest';
 // import { vi } from '.\vitest\globals.d.ts'
 // import { vi } from 'vitest'
 
 describe('Tests for the CardList component', () => {
   test('Verify that the component renders the specified number of cards', () => {
-    const cardsList: SpellsRequestType = {
-      spellsRequest: spellsRequest,
-      setSpellsRequest: vi.fn(),
-    };
+    // const cardsList: SpellsRequestType = {
+    //   spellsRequest: spellsRequest,
+    //   setSpellsRequest: vi.fn(),
+    // };
+    const mockStore = configureMockStore();
+
+    const cardsStore = mockStore(initialState);
 
     render(
       <MemoryRouter>
-        <SpellsRequestContext.Provider value={cardsList}>
+        {/* <SpellsRequestContext.Provider value={cardsList}> */}
+        <Provider store={cardsStore}>
           <SearchResult />
-        </SpellsRequestContext.Provider>
+          </Provider>
+        {/* </SpellsRequestContext.Provider> */}
       </MemoryRouter>
     );
 
@@ -26,16 +35,18 @@ describe('Tests for the CardList component', () => {
   });
 
   test('Check that an appropriate message is displayed if no cards are present', () => {
-    const spellsRequest: SpellsRequestData[] = [];
-    const cardsList: SpellsRequestType = {
-      spellsRequest: spellsRequest,
-      setSpellsRequest: vi.fn(),
-    };
+    // const spellsRequest: SpellsRequestData[] = [];
+    // const cardsList: SpellsRequestType = {
+    //   spellsRequest: spellsRequest,
+    //   setSpellsRequest: vi.fn(),
+    // };
     render(
       <MemoryRouter>
-        <SpellsRequestContext.Provider value={cardsList}>
+        {/* <SpellsRequestContext.Provider value={cardsList}> */}
+        <Provider store={store}>
           <SearchResult />
-        </SpellsRequestContext.Provider>
+          </Provider>
+        {/* </SpellsRequestContext.Provider> */}
       </MemoryRouter>
     );
 
