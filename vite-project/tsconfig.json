@@ -18,8 +18,8 @@
     "jsx": "react-jsx",
     "types": [
       "vitest/globals",
-      "@testing-library/jest-dom"
-      // "@vitest/jest-dom/extend-expect",
+      "@testing-library/jest-dom",
+      "@vitest/jest-dom/extend-expect"
       // "node",
       // "jest"
     ]
