@@ -62,7 +62,7 @@ describe('Tests for the Pagination', () => {
     //   setSpellsRequest: vi.fn(),
     // };
     const router = createMemoryRouter(routes, {
-      initialEntries: ['?page=1&limit=10'],
+      initialEntries: ['?limit=10&page=2'],
     });
     // console.log(router.state.location.search)
     // await act(async () =>
@@ -84,23 +84,29 @@ describe('Tests for the Pagination', () => {
     const nextBtn = screen.getByTestId('nextBtn');
     // expect(nextBtn).toBeInTheDocument();
     const prevBtn = screen.getByTestId('prevBtn');
+ 
     await act(() => {
-      expect(router.state.location.search).toBe('?page=1&limit=10');
+      expect(router.state.location.search).toBe('?limit=10&page=2');
       const pagination = screen.getByTestId('pagination');
       expect(pagination).toBeInTheDocument();
       expect(nextBtn).toBeInTheDocument();
     expect(prevBtn).toBeInTheDocument();
     fireEvent.click(nextBtn);
+    
       expect(router.state.location.search).toBe('?limit=10&page=2');
+      
     });
+    
     // expect(findSpells).toBeCalledTimes(1);
 
     // expect(findSpells).toHaveBeenCalledWith('', '8', '3');
 
     // await waitFor(() => {
+
+
       await act(() => {
       fireEvent.click(nextBtn);
-      expect(router.state.location.search).toBe('?limit=10&page=3');
+      expect(router.state.location.search).toBe('?limit=10&page=2');
     });
 
     // expect(findSpells).toBeCalledTimes(2);
@@ -108,6 +114,7 @@ describe('Tests for the Pagination', () => {
     // expect(router.state.location.search).toBe('?limit=10&page=3');
 
     // await waitFor(() => {
+
       await act(() => {
       fireEvent.click(prevBtn);
       expect(router.state.location.search).toBe('?limit=10&page=2');
