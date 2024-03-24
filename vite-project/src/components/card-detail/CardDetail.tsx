@@ -9,9 +9,6 @@ import { setIsDetailsLoading } from '../../store/reducers/isLoading';
 
 const CardDetail = () => {
   const { cardId } = useParams();
-  // const [currentSpell, setCurrentSpell] = useState<OneSpellRequest | undefined>(
-  //   undefined
-  // );
   let id = '';
   if (cardId) {
     id = cardId;
